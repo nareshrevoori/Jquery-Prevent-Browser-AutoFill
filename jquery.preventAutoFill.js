@@ -5,17 +5,18 @@
 	$(function(){
 		
 		return $('form').each(function(i, frm){
-			var inputs = $(frm +':input');
+			
+			var inputs = $(frm +':input[type=text]');
 			$.each(inputs, function(){
-				if($(this).attr('type') == 'text')
-					$(this).attr('name', $(this).attr('name') + "_" + sTime);
+				var $self = $(this);
+				$self.attr('name', $self.attr('name') + "_" + sTime);
 			});
 
 			$(frm).bind('submit', function(){
-				var inputs = $(frm +':input');
+				var inputs = $(frm +':input[type=text]');
 				$.each(inputs, function(){
-					if($(this).attr('type') == 'text')
-						$(this).attr('name', $(this).attr('name').replace('_'+sTime, ''));
+					var $self = $(this);
+					$self.attr('name', $self.attr('name').replace('_'+sTime, ''));
 				});	
 			})
 		})
